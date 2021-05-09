@@ -11,13 +11,18 @@ include(AddTarget)
 execute_process(
     COMMAND "conan" "install" ".."  "-s" "build_type=${CMAKE_BUILD_TYPE}"
     WORKING_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}/3rdparty"
+    RESULT_VARIABLE STATUS
 )
 
+if(NOT STATUS EQUAL 0)
+    message(FATAL_ERROR "Error occurred install conan dependencies. (return code: ${STATUS})")
+endif()
+
 # find packages
-find_package(fmt REQUIRED)
+
 AddTarget(
     exe  
     name      main
     src       main.cpp 
-    depends   fmt
+    depends   fmt Eigen3 Sophus
 )
