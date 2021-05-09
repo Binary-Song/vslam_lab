@@ -24,5 +24,5 @@ AddTarget(
     exe  
     name      main
     src       main.cpp 
-    depends   fmt Eigen3 Sophus
+    depends   fmt 
 )
