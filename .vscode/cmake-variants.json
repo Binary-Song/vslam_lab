@@ -1,0 +1,28 @@
+{
+  "buildType": {
+    "default": "Debug",
+    "description": "The build type.",
+    "choices": {
+      "debugs": {
+        "short": "Debug",
+        "long": "关闭优化-包括调试信息",
+        "buildType": "Debug"
+      },
+      "release": {
+        "short": "Release",
+        "long": "开启优化-排除调试信息",
+        "buildType": "Release"
+      },
+      "minsize": {
+        "short": "MinSizeRel",
+        "long": "最小化二进制大小-排除调试信息",
+        "buildType": "MinSizeRel"
+      },
+      "reldeb": {
+        "short": "RelWithDebInfo",
+        "long": "开启优化-包括调试信息",
+        "buildType": "RelWithDebInfo"
+      }
+    }
+  }
+}
