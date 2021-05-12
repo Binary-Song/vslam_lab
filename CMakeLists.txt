@@ -3,10 +3,16 @@ project(vslam_lab)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/3rdparty" "${CMAKE_CURRENT_LIST_DIR}/cmake")
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_LIST_DIR}/3rdparty")
-
+ 
 # includes
 include(AddTarget)
 include(InstallConanPackages)
+include(CppGlobalConfig)
+
+# config cpp
+CppGlobalConfig(
+    std 11
+)
 
 # install conan dependencies and find packages
 InstallConanPackages(
