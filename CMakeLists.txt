@@ -6,22 +6,18 @@ list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_LIST_DIR}/3rdparty")
 
 # includes
 include(AddTarget)
+include(InstallConanPackages)
 
-# install conan dependencies  
-execute_process(
-    COMMAND "conan" "install" ".."  "-s" "build_type=${CMAKE_BUILD_TYPE}"
-    WORKING_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}/3rdparty"
-    RESULT_VARIABLE STATUS
-)
+# install conan dependencies and find packages
+InstallConanPackages(
+    "${CMAKE_CURRENT_LIST_DIR}"
+    output                  "${CMAKE_CURRENT_LIST_DIR}/3rdparty"
+    packages_to_find        "fmt" 
+) 
 
-if(NOT STATUS EQUAL 0)
-    message(FATAL_ERROR "Error occurred install conan dependencies. (return code: ${STATUS})")
-endif()
-
-# find packages
-
+# add target
 AddTarget(
-    exe  
+    exe
     name      main
     src       main.cpp 
     depends   fmt Eigen3 Sophus

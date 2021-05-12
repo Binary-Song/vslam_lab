@@ -6,5 +6,8 @@
         "core": "cpp",
         "geometry": "cpp",
         "cmath": "cpp"
-    }
+    },
+    "cmake.configureArgs": [
+        "-Wno-dev"
+    ] 
 }
