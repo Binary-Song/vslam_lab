@@ -50,7 +50,7 @@ MACRO(InstallConanPackages input)
 
     execute_process(
         COMMAND "conan" "install" "${input}"  "-s" "build_type=${CMAKE_BUILD_TYPE}"
-        WORKING_DIRECTORY "${output}"
+        WORKING_DIRECTORY "${arg_output}"
         RESULT_VARIABLE process_result
         
     )
