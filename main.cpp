@@ -1,6 +1,5 @@
 #define M_PI 3.141592653
-
-
+ 
 #include <iostream>
 #include <cmath>
 #include <Eigen/Core>
@@ -9,10 +8,9 @@
 
 using namespace std;
 using namespace Eigen;
-
-int main(int argc, char **argv)
-{
-
+ 
+int main()
+{ 
     // 沿Z轴转90度的旋转矩阵
     Matrix3d R = AngleAxisd(M_PI / 2, Vector3d(0, 0, 1)).toRotationMatrix();
     // 或者四元数
