@@ -1,5 +1,10 @@
 {
     "cmake.configureSettings": {
         "CMAKE_BUILD_TYPE": "${buildType}"
+    },
+    "files.associations": {
+        "core": "cpp",
+        "geometry": "cpp",
+        "cmath": "cpp"
     }
 }
