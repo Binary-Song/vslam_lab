@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14)
-project(___ProjectName___)
+project(vslam_lab)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/3rdparty" "${CMAKE_CURRENT_LIST_DIR}/cmake")
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_CURRENT_LIST_DIR}/3rdparty")
@@ -15,10 +15,5 @@ InstallConanPackages(
     packages_to_find        "fmt;Eigen3;Sophus;OpenCV" 
 ) 
 
-# add target
-AddTarget(
-    exe
-    name      main
-    src       main.cpp 
-    depends   fmt Eigen3 Sophus
-)
+add_subdirectory(test1)
+add_subdirectory(test2)
