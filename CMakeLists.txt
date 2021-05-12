@@ -12,7 +12,7 @@ include(InstallConanPackages)
 InstallConanPackages(
     "${CMAKE_CURRENT_LIST_DIR}"
     output                  "${CMAKE_CURRENT_LIST_DIR}/3rdparty"
-    packages_to_find        "fmt" 
+    packages_to_find        "fmt;Eigen3;Sophus;OpenCV" 
 ) 
 
 # add target
