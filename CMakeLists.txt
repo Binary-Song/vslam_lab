@@ -12,13 +12,18 @@ include(CppGlobalConfig)
 # config cpp
 CppGlobalConfig(
     std 11
+    others_flags  mysmvcflag1 mysmvcflag2
+    clang_flags xxx
+    others_defs  mymsvcdef=aaa mymsvcdef=bbb
+    gnu_defs    xxx
+    intel_flags xxx
 )
 
 # install conan dependencies and find packages
 InstallConanPackages(
     "${CMAKE_CURRENT_LIST_DIR}"
     output                  "${CMAKE_CURRENT_LIST_DIR}/3rdparty"
-    packages_to_find        "fmt" 
+    packages_to_find        "fmt"
 ) 
 
 # add target
