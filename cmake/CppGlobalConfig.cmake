@@ -99,7 +99,7 @@ function(set_symdiff S T out)
     set(${out} "${symdiff}" PARENT_SCOPE)
 endfunction()
 
-# 求交集
+# 求交集（上面的集合函数都是为了求我做准备）
 function(set_intersect S T out)
     set_union("${S}" "${T}" s_u_t)
     set_symdiff("${S}" "${T}" s_d_t)
@@ -107,21 +107,29 @@ function(set_intersect S T out)
     set(${out} "${itsc}" PARENT_SCOPE)
 endfunction()
 
+
+# 终于定义完工具函数了！开始做事！
+# 调用handle_x来处理flags和defs，输出为2个：out_values和out_unparsed
+# out_values为用户给的编译选项或者宏定义，out_unparsed为cmake_parse_arguments不理解的实参。
+# 每次我们都是把传给CppGlobalConfig的全部参数给cmake_parse_arguments的，比如在处理flags时
+# 我们把std、xxx_defs等参数也传给cmake_parse_arguments了！而cmake_parse_arguments只能看懂xxx_flags
+# 所以out_unparsed会不为空！但没关系，我们只要每个参数*最终*被认识就行。即每次的out_unparsed的*交集*为空就行！
+
+# 处理flags，此时调用第一次cmake_parse_arguments
 handle_x(flags "${ARGV}")
 add_compile_options(${out_values})
 if(out_values)
 message("flags += ${out_values}")
 endif()
 set(flags_unparsed "${out_unparsed}")
-
+# 处理flags，此时调用第2次cmake_parse_arguments
 handle_x(defs "${ARGV}")
 add_compile_definitions(${out_values})
 if(out_values)
 message("defs += ${out_values}")
 endif() 
 set(defs_unparsed "${out_unparsed}")
-
-
+# 处理std等其他参数，此时调用第3次cmake_parse_arguments
 cmake_parse_arguments(
     "arg"                       # prefix
     ""                          # optional args
@@ -130,82 +138,20 @@ cmake_parse_arguments(
     ${ARGV}
 )
 
+# 计算三次out_unparsed的*交集*，赋值给never_parsed_args
 set_intersect("${flags_unparsed}" "${defs_unparsed}" u1)
 set_intersect("${u1}" "${arg_UNPARSED_ARGUMENTS}" never_parsed_args)
 
+# 如果不为空，则报错
 if(never_parsed_args)
     message(FATAL_ERROR "unknown args: ${never_parsed_args}")
 endif()
 
-
+# 设置cpp版本
 if(arg_std) 
     set(CMAKE_CXX_STANDARD ${arg_std} PARENT_SCOPE) 
     set(CMAKE_CXX_STANDARD_REQUIRED ON PARENT_SCOPE) 
     set(CMAKE_CXX_EXTENSIONS OFF PARENT_SCOPE)
 endif()
-
-
-
-
-#[[ 
-    foreach(arg ${ARGV}) 
-        if(${arg} MATCHES "^.*_flags$")
-            string(REGEX MATCH "^.*_flags$" argcpy ${arg})
-            string(REGEX REPLACE "_flags$"
-            "" compilerId
-            "${argcpy}")
-            list(APPEND compiler_ids "${compilerId}")
-            list(APPEND argnames    "${arg}")
-        endif()
-    endforeach()
-
-    message("compiler ids = ${compiler_ids}")
-    message("arg names = ${argnames}")
-
-    # args
  
-    cmake_parse_arguments(
-        "arg"                       # prefix
-        ""                          # optional args
-        "std"                       # one value args
-        "${argnames};flags;defs"              # multi value args
-        ${ARGN}
-    )
-
-    string(TOLOWER "${CMAKE_CXX_COMPILER_ID}" comiler_id_lower_case)
-
-    set(the_flags "${arg_${comiler_id_lower_case}_flags}")
- 
-    if(NOT the_flags)
-        set(the_flags "${arg_flags}")
-    endif()
-
-    message("compile flags added: ${the_flags}")
-    add_compile_options(${the_flags})
-
-
-    set(the_defs "${arg_${comiler_id_lower_case}_defs}")
-
-    if(NOT the_defs)
-        set(the_defs "${arg_others_defs}")
-    endif()
-        
-
-     
-    message("compile defs added: ${the_defs}")
-        add_compile_definitions(${the_defs})
-
-    if(arg_std) 
-        set(CMAKE_CXX_STANDARD ${arg_std} PARENT_SCOPE) 
-        set(CMAKE_CXX_STANDARD_REQUIRED ON PARENT_SCOPE) 
-        set(CMAKE_CXX_EXTENSIONS OFF PARENT_SCOPE)
-    endif()
-
-    if(MSVC)
-        add_compile_options(${arg_msvc_flags})
-    else()
-        add_compile_options(${arg_flags})
-    endif() 
-        add_compile_definitions(${arg_defs})
-]] 
 endfunction(CppGlobalConfig)
