@@ -11,7 +11,8 @@ include(CppGlobalConfig)
 
 # config cpp
 CppGlobalConfig(
-    std 11
+    std         11 
+    msvc_flags  /utf-8  
 )
 
 # install conan dependencies and find packages
