@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "name": "debug launch",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${command:cmake.launchTargetPath}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "console": "externalTerminal"
+        } 
+    ]
+}
