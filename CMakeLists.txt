@@ -11,12 +11,8 @@ include(CppGlobalConfig)
 
 # config cpp
 CppGlobalConfig(
-    std 11
-    others_flags  mysmvcflag1 mysmvcflag2
-    clang_flags xxx
-    others_defs  mymsvcdef=aaa mymsvcdef=bbb
-    gnu_defs    xxx
-    intel_flags xxx
+    std         11 
+    msvc_flags  /utf-8  
 )
 
 # install conan dependencies and find packages
