@@ -4,6 +4,6 @@ AddTarget(
     exe
     name      test1
     src       main.cpp 
-    depends   fmt Eigen3 Sophus  Boost
+    depends   fmt Eigen3 Sophus Boost
     libs      opencv::opencv  
 ) 

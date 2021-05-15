@@ -3,7 +3,7 @@ AddTarget(
     exe
     name      test2
     src       "joinMap.cpp" 
-    depends   Sophus Boost Pangolin
+    depends   Sophus Boost pangolin
     libs      opencv::opencv  
 ) 
  
