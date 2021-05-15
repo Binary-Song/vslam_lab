@@ -22,7 +22,7 @@ InstallConanPackages(
     output                  "${CMAKE_CURRENT_LIST_DIR}/3rdparty"
     packages_to_find        "fmt;Eigen3;Sophus;OpenCV;Boost;Pangolin;g2o" 
 )
-  
+
 add_subdirectory(test1)
 add_subdirectory(test2)
 add_subdirectory(test3)
