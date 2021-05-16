@@ -7,10 +7,11 @@ ceres-solver/2.0.0
 boost/1.76.0
 pangolin/0.6 
 g2o/dev
+dbow3/dev
 
 [generators]
 cmake_find_package
 cmake_paths 
 
 [imports]
-bin, *.dll -> ./bin # 安装dll到bin目录
+bin, *.dll -> ./bin # 所有依赖的dll全部安装到3rdparty/bin目录

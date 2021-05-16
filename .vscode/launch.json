@@ -1,15 +1,36 @@
 {
     "configurations": [
         {
-            "name": "debug launch",
+            "name": "default",
             "type": "cppvsdbg",
             "request": "launch",
             "program": "${command:cmake.launchTargetPath}",
-            "args": [],
-            "stopAtEntry": true,
-            "cwd": "D:/Projects/vslam_lab/test2",
-            "environment": [],
+            "args": ["1"],
+            "stopAtEntry": false,
+            "cwd": "${command:cmake.getLaunchTargetDirectory}",
+            "environment": [
+                {
+                    "name": "PATH", // 添加PATH是为了方便找到dll
+                    "value": "D:\\Projects\\vslam_lab\\3rdparty\\bin"
+                } 
+            ],
             "console": "externalTerminal"
-        } 
+        },
+        {
+            "name": "test3",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "D:/Projects/vslam_lab/build/Debug/main.exe",
+            "args": ["1"],
+            "stopAtEntry": false,
+            "cwd": "${command:cmake.getLaunchTargetDirectory}",
+            "environment": [
+                {
+                    "name": "PATH", // 添加PATH是为了方便找到dll
+                    "value": "D:\\Projects\\vslam_lab\\3rdparty\\bin"
+                }
+            ],
+            "console": "externalTerminal"
+        }
     ]
 }

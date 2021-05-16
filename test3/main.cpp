@@ -53,6 +53,8 @@ class Sample {
 };
 
 int main(int argc, const char* argv[]){
+    if(const char* env_p = std::getenv("PATH"))
+    std::cout << "Your PATH is: " << env_p << '\n';
   if (argc<2)
   {
     cout << endl;
