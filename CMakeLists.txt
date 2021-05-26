@@ -13,7 +13,7 @@ include(CppGlobalConfig)
 CppGlobalConfig(
     std         17 
     msvc_flags  /utf-8 
-    msvc_defs   -D_USE_MATH_DEFINES -DWINDOWS
+    msvc_defs   -D_USE_MATH_DEFINES -DWINDOWS  
 ) 
 
 # install conan dependencies and find packages
@@ -25,4 +25,6 @@ InstallConanPackages(
 add_subdirectory(test1)
 add_subdirectory(test2)
 add_subdirectory(test3)
- 
+add_subdirectory(test4)
+
+add_subdirectory(modules)

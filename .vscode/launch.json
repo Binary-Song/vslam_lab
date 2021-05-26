@@ -1,20 +1,15 @@
 {
     "configurations": [
         {
-            "name": "default",
+            "name": "debug default target",
             "type": "cppvsdbg",
             "request": "launch",
             "program": "${command:cmake.launchTargetPath}",
             "args": ["1"],
             "stopAtEntry": false,
-            "cwd": "${command:cmake.getLaunchTargetDirectory}",
-            "environment": [
-                {
-                    "name": "PATH", // 添加PATH是为了方便找到dll
-                    "value": "D:\\Projects\\vslam_lab\\3rdparty\\bin"
-                } 
-            ],
-            "console": "externalTerminal"
+            "cwd": "${command:cmake.getLaunchTargetDirectory}", 
+            "console": "externalTerminal",
+            "visualizerFile": "${workspaceRoot}/natvis/eigen.natvis"
         },
         {
             "name": "test3",
@@ -23,13 +18,7 @@
             "program": "D:/Projects/vslam_lab/build/Debug/main.exe",
             "args": ["1"],
             "stopAtEntry": false,
-            "cwd": "${command:cmake.getLaunchTargetDirectory}",
-            "environment": [
-                {
-                    "name": "PATH", // 添加PATH是为了方便找到dll
-                    "value": "D:\\Projects\\vslam_lab\\3rdparty\\bin"
-                }
-            ],
+            "cwd": "${command:cmake.getLaunchTargetDirectory}", 
             "console": "externalTerminal"
         }
     ]

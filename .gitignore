@@ -1,2 +1,5 @@
 build
 3rdparty/*
+data
+bin
+test*
